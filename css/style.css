@@ -1,0 +1,250 @@
+/* ====================================================== */
+/* 1. Variáveis de Tema (Light & Dark)                    */
+/* ====================================================== */
+
+:root {
+    --cor-fundo: #f8f9fa;
+    --cor-texto: #212529;
+    --cor-primaria: #0d6efd;
+    --cor-fundo-input: #ffffff;
+    --cor-borda: #ced4da;
+}
+
+body.dark-mode {
+    --cor-fundo: #212529;
+    --cor-texto: #f8f9fa;
+    --cor-primaria: #58a6ff;
+    --cor-fundo-input: #343a40;
+    --cor-borda: #6c757d;
+}
+
+
+/* ====================================================== */
+/* 2. Estilos Globais e do Corpo da Página                */
+/* ====================================================== */
+
+body {
+    font-family: 'Verdana', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.card-ativo {
+    overflow: hidden;
+}
+
+
+/* ====================================================== */
+/* 3. Estilo da Logo e Menu de Níveis                     */
+/* ====================================================== */
+
+.logo-digitai {
+    height: 1.2em;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+#lista-niveis .card {
+    transition: transform 0.2s ease-in-out;
+}
+
+#lista-niveis .card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* ====================================================== */
+/* 4. Estilos da Tela Principal do Jogo                   */
+/* ====================================================== */
+
+#tela-principal {
+    padding-top: 5vh;
+}
+
+#palavra-display {
+    font-size: 5rem;
+    letter-spacing: 0.1em;
+    color: var(--cor-primaria);
+    transition: color 0.3s ease;
+    margin-bottom: 2rem;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+#input-palavra {
+    text-transform: uppercase;
+    font-size: 2rem;
+    background-color: var(--cor-fundo-input);
+    color: var(--cor-texto);
+    border: 2px solid var(--cor-borda);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    max-width: 800px;
+    width: 100%;
+    min-height: 40px;
+    padding: 15px 20px;
+    margin: 0 auto;
+    resize: none;
+    text-align: center;
+    line-height: 1.5;
+}
+
+#input-palavra:focus {
+    background-color: var(--cor-fundo-input);
+    color: var(--cor-texto);
+    box-shadow: 0 0 15px var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+#progresso-nivel {
+    font-weight: bold;
+}
+
+.nivel-concluido #palavra-display {
+    margin-bottom: 1rem;
+}
+
+.nivel-concluido #coruja-parabens {
+    margin-top: 1rem;
+}
+
+
+/* ====================================================== */
+/* 5. Animações e Elementos Flutuantes                    */
+/* ====================================================== */
+
+#animacao-coruja {
+    position: fixed;
+    bottom: 20px;
+    right: 100px;
+    width: 200px;
+    z-index: 1000;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.escondida {
+    opacity: 0;
+    transform: translateY(150px);
+    pointer-events: none;
+}
+
+.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#coruja-parabens {
+    max-width: 300px;
+    height: auto;
+    margin: 20px auto;
+    display: none;
+}
+
+#coruja-parabens.mostrar {
+    display: block;
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.btn-flutuante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.intro-card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.intro-card.mostrar {
+    opacity: 1;
+    visibility: visible;
+}
+
+.intro-card .card {
+    max-width: 500px;
+}
+
+
+/* ====================================================== */
+/* 6. Responsividade (Media Queries)                      */
+/* ====================================================== */
+
+@media (max-width: 768px) {
+    #palavra-display {
+        font-size: 3rem;
+        letter-spacing: normal;
+        margin-bottom: 1.5rem;
+    }
+    #input-palavra {
+        font-size: 1.5rem;
+    }
+    #coruja-parabens {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    #palavra-display {
+        font-size: 2.5rem;
+    }
+    #animacao-coruja {
+        width: 120px;
+    }
+}
+
+@media (max-height: 750px) {
+    #palavra-display {
+        font-size: 3.5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    #coruja-parabens {
+        max-width: 200px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    #input-palavra {
+        margin-top: 1rem;
+    }
+}
