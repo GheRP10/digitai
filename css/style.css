@@ -69,7 +69,6 @@ body.card-ativo {
     transition: color 0.3s ease;
     margin-bottom: 2rem;
     word-break: break-word;
-    hyphens: auto;
 }
 
 #input-palavra {
