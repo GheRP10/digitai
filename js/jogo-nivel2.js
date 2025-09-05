@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressoNivelSpan.textContent = `${progresso.acertos} / ${totalPalavrasNivel2}`;
         inputPalavra.disabled = false;
         inputPalavra.value = '';
+        inputPalavra.style.textTransform = 'none';
         corujaParabens.classList.remove('mostrar');
         document.body.classList.remove('card-ativo');
         apresentarNovaPalavra();
