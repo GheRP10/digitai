@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressoNivelSpan.textContent = `${progresso.acertos} / ${totalPalavrasNivel4}`;
         inputPalavra.disabled = false;
         inputPalavra.value = '';
+        inputPalavra.style.textTransform = 'none';
         corujaParabens.classList.remove('mostrar');
         document.body.classList.remove('card-ativo');
         apresentarNovaPalavra();
@@ -177,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ======================================================
     inputPalavra.addEventListener('input', () => {
         if (inputPalavra.disabled) return;
-        const palavraDigitada = inputPalavra.value.toUpperCase();
+        const palavraDigitada = inputPalavra.value;
         const palavraAtual = palavrasNivel4[estadoJogo[progressoChave].indice];
         if (palavraDigitada === palavraAtual) {
             feedbackAcerto();
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputPalavra.disabled) return;
         if (event.key === 'Enter') {
             event.preventDefault();
-            const palavraDigitada = inputPalavra.value.toUpperCase();
+            const palavraDigitada = inputPalavra.value;
             const palavraAtual = palavrasNivel4[estadoJogo[progressoChave].indice];
             if (palavraDigitada === '') return;
             if (palavraDigitada === palavraAtual) {
