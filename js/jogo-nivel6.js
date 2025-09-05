@@ -119,13 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (fraseAtual === "Que dia da semana é hoje?") {
             respostasPossiveis.push(diasDaSemana[dataDeHoje.getDay()]);
+        
         } else if (fraseAtual === "Que data é hoje? XX/XX/XXXX") {
             const dia = String(dataDeHoje.getDate()).padStart(2, '0');
             const mes = String(dataDeHoje.getMonth() + 1).padStart(2, '0');
             const ano = dataDeHoje.getFullYear();
             respostasPossiveis.push(`${dia}/${mes}/${ano}`);
-            respostasPossiveis.push(`${dia}.${mes}/${ano}`);
-        } else if (fraseAtual === "Que horas são?") {
+            respostasPossiveis.push(`${dia}.${mes}.${ano}`);
+
+        } else if (fraseAtual === "Que horas são? XX:XX") {
             const hora = String(dataDeHoje.getHours()).padStart(2, '0');
             const minuto = String(dataDeHoje.getMinutes()).padStart(2, '0');
             respostasPossiveis.push(`${hora}:${minuto}`);
@@ -134,6 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const proxMin = String(proximoMinuto.getMinutes()).padStart(2, '0');
             if (`${proxHora}:${proxMin}` !== `${hora}:${minuto}`) {
                 respostasPossiveis.push(`${proxHora}:${proxMin}`);
+            }
+        
+        } else if (fraseAtual === "Que mês estamos? XX") { 
+            respostasPossiveis.push(mesesDoAno[dataDeHoje.getMonth()]);
+
+        } else if (fraseAtual === "Que ano você nasceu? XXXX") {
+            if (estadoJogo.anoNascimento) {
+                respostasPossiveis.push(estadoJogo.anoNascimento);
+            } else {
+                const anoNasc = prompt("Para continuar, por favor, digite o seu ano de nascimento (ex: 1962):");
+                if (anoNasc && !isNaN(anoNasc) && anoNasc.length === 4) {
+                    estadoJogo.anoNascimento = anoNasc;
+                    salvarProgresso();
+                    respostasPossiveis.push(estadoJogo.anoNascimento);
+                } else {
+                    alert("Ano inválido. Vamos tentar novamente.");
+                    window.location.reload();
+                }
             }
         } else {
             respostasPossiveis.push(fraseAtual);
